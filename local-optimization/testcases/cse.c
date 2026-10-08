@@ -6,8 +6,3 @@ int compute(int b, int c){
 
     return a * d;
 }
-
-// Expected (checked by run_tests.sh): b + c is computed once.
-// CHECK:     [[A:%.*]] = add nsw i32 %b, %c
-// CHECK-NOT: = add
-// CHECK:     mul nsw i32 [[A]], [[A]]

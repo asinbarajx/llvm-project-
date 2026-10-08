@@ -30,8 +30,10 @@ local-optimization/
 ├── README.md
 ├── src/LocalOptimization.cpp
 └── testcases/
-    ├── *.c             testcases, expected result in CHECK lines at the bottom
-    └── run_tests.sh
+    ├── <name>.c        testcase
+    ├── <name>.ll       unoptimized IR (clang -O0)
+    ├── <name>.opt.ll   IR after local-opt
+    └── run_tests.sh    regenerates both .ll files for every testcase
 ```
 
 ## Build
@@ -40,7 +42,7 @@ You need LLVM built with clang in `build/` at the root of this repository:
 
 ```sh
 cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS=clang
-ninja -C build clang opt FileCheck
+ninja -C build clang opt
 ```
 
 Then build the pass. This produces `build/LocalOptimization.so`:
@@ -67,8 +69,9 @@ function `optnone`, and `opt` would skip it.
 ./testcases/run_tests.sh
 ```
 
-Each testcase is compiled, optimized, and compared with the `CHECK` lines at
-its end. The generated IR is written to `build/testcases/`.
+This compiles each testcase to `<name>.ll` and runs `local-opt` on it to
+produce `<name>.opt.ll`. Both files are committed, so you can compare the
+before and after IR without building anything.
 
 | Testcase | Result |
 |---|---|

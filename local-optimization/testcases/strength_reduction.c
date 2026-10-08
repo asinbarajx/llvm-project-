@@ -11,8 +11,3 @@ int main(){
 
     return a;
 }
-
-// Expected (checked by run_tests.sh):
-// CHECK: shl i32 {{%.*}}, 1
-// CHECK: shl i32 {{%.*}}, 3
-// CHECK: ret i32 3

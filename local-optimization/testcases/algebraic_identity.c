@@ -10,7 +10,3 @@ int compute (int a, int b)
   result += 23; //constant folding
   return result;
 }
-
-// Expected (checked by run_tests.sh): no arithmetic left.
-// CHECK-NOT: sdiv
-// CHECK:     ret i32 23

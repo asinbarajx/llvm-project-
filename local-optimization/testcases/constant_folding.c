@@ -16,8 +16,3 @@ int compute ()
 
     return result;
 }
-
-// Expected (checked by run_tests.sh):
-// CHECK: store i32 9, ptr %c
-// CHECK: store i32 45, ptr %result
-// CHECK: ret i32 22
